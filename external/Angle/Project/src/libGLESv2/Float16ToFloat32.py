@@ -37,10 +37,7 @@ def convertExponent(i):
         return 0xC7800000
 
 def convertOffset(i):
-    if i == 0 or i == 32:
-        return 0
-    else:
-        return 1024
+    return 0 if i in [0, 32] else 1024
 
 print """//
 // Copyright (c) 2012 The ANGLE Project Authors. All rights reserved.

@@ -11,8 +11,7 @@ xcode = subprocess.check_output(['/usr/bin/xcodebuild', '-version']).decode().sp
 
 def getCustomTemplateName():
     target = os.environ['TEMPLATE_TARGET']
-    target = target[len('template'):]
-    if target:
+    if target := target[len('template') :]:
         return target
 customTemplate = getCustomTemplateName()
 
@@ -21,16 +20,14 @@ def isBeta():
 
 def getLabel():
     if coronaVersion < 140000:
-        return xcodeVersion + " (Legacy)"
-    if customTemplate == '-angle':
-        return xcodeVersion + " Metal"
-    return xcodeVersion
+        return f"{xcodeVersion} (Legacy)"
+    return f"{xcodeVersion} Metal" if customTemplate == '-angle' else xcodeVersion
 
 
 entry = {
     "label": getLabel(),
     "xcodeVersion": xcodeVersion,
-    "failMessage": "install or xcode-select " + xcode + " to enable",
+    "failMessage": f"install or xcode-select {xcode} to enable",
     "coronaVersion": coronaVersion,
     "beta": isBeta(),
 }
@@ -47,6 +44,6 @@ output = {
 subprocess.check_call(['/bin/mkdir', '-p', 'output'])
 fileName = {"tvos":"tvOS-SDKs.json", "iphone":"iOS-SDKs.json"}
 ordNum = 1000000 - coronaVersion + (5 if isBeta() else 0) + (1 if customTemplate else 0)
-fileName = str(ordNum).zfill(7) + '_' + fileName[platform]
+fileName = f'{str(ordNum).zfill(7)}_{fileName[platform]}'
 with open(os.path.join('output', fileName), 'w') as f:
     json.dump(output, f, indent=4)
