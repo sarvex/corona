@@ -49,7 +49,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -88,7 +88,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -133,7 +133,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -178,7 +178,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -207,7 +207,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4.1.7
       - name: Collect templates together
         run: |
           mkdir -p output/iostemplate
@@ -236,7 +236,7 @@ jobs:
           tar -xjf emsdk.tar.xz -C ~/
           xattr -r -d com.apple.quarantine ~/emsdk || true
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -266,15 +266,15 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -309,15 +309,15 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -347,7 +347,7 @@ jobs:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - uses: actions/checkout@v3
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put native in place
@@ -372,7 +372,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -403,7 +403,7 @@ jobs:
     steps:
       - run: CDR="$(basename "$(pwd)")" ; cd .. ; rm -rf "$CDR" ; mkdir -p "$CDR" ; cd "$CDR"
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -412,19 +412,19 @@ jobs:
       - name: Check for macOS min supported version
         run: exit $( echo  $(cat platform/mac/AppDelegate.mm |  perl -ne 'print for /kosVersionCurrent = @"([0-9.]+)"/') ' < '  $(/usr/bin/xcrun --sdk macosx --show-sdk-version)  | bc )
       - name: Get collected templates
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Collected-ios-templates
       - name: Put collected iOS templates in place
         run: cp -Rv Collected-ios-templates/* platform/resources/
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Put webtemplate in place
         run: cp -v Webtemplate/webtemplate.zip platform/resources/
       - name: Get Linux template
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Linux-Template
       - name: Put webtemplate in place
@@ -439,7 +439,7 @@ jobs:
       - name: Clean-up docs
         run: rm -rf docs/SampleCode/.git docs/SampleCode/.gitignore
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put JRE in place
@@ -467,7 +467,7 @@ jobs:
     runs-on: macos-13
     steps:
       - name: Get built simulator
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-macOS
       - name: Notarize
@@ -524,7 +524,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -545,7 +545,7 @@ jobs:
       - name: Move docs outside the directory
         run: mv docs ../docs
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Put webtemplate in place
@@ -556,7 +556,7 @@ jobs:
         run: |
           curl -sL https://github.com/coronalabs/binary-data/releases/download/1.0/nxtemplate > platform/resources/nxtemplate
       - name: Get Linux template
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Linux-Template
       - name: Put webtemplate in place
@@ -564,7 +564,7 @@ jobs:
           cp -v Linux-Template/linuxtemplate_x64.tgz platform/resources/
         shell: bash
       - name: Get Corona Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put native in place
@@ -617,7 +617,7 @@ jobs:
       - linux
       - release
     steps:
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Snap
       - name: Determine release
@@ -673,25 +673,25 @@ jobs:
           echo "$GIT_LOG" >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "$GIT_LOG"
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-macOS
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-Windows
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: CoronaCards-iOS
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: CoronaCards-Android
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Native
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Flatpak
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Snap
       - run: find Snap -name '*.snap' -execdir mv -v {} s2d.snap \; -quit
